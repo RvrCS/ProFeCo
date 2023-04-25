@@ -22,12 +22,19 @@ public class HomeController {
 
         return "index";
     }
+    @GetMapping("/login")
+    public String login(){
+        return "login";
+    }
+
 
     @GetMapping("/register")
     public String register(Model model){
         model.addAttribute("user", new User());
         return "register";
     }
+
+
 
     @PostMapping("/register")
     public String crear(User user){
