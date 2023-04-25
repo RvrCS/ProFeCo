@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Register</title>
@@ -9,34 +9,50 @@
           integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
           crossorigin="anonymous">
 </head>
-<body>
+<body class="container">
 
-    <form action="" method="post" th:object="${user}">
-        <div>
-            <label for="nombre">Nombre </label>
-            <input id="nombre" type="text" th:field="*{nombre}">
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-4">
+            <form action="" method="post" th:object="${user}">
+                <div class="mb-2">
+                    <label for="nombre">Nombre </label>
+                    <input id="nombre" type="text" th:field="*{nombre}" class="form-control">
+                </div>
+
+                <div class="mb-2">
+                    <label for="email">Email </label>
+                    <input id="email" type="email" th:field="*{email}" class="form-control">
+                </div>
+
+                <div class="mb-2">
+                    <label for="password">Password </label>
+                    <input id="password" type="password" th:field="*{password}" class="form-control">
+                </div>
+
+                <div class="mb-2">
+                    <label for="confirm_password">Confirm Password </label>
+                    <input id="confirm_password" type="password" class="form-control">
+                </div>
+
+                <div class="mb-2">
+                    <label for="role" class="form-label">Rol</label>
+                    <select id="role" class="form-select" th:field="*{role}">
+                        <option value="">Seleccione un rol</option>
+                        <option th:each="role : ${T(com.ProConsumoApp.ProConsumoApp.Models.Role).values()}"
+                                th:value="${role}" th:text="${role}">
+                        </option>
+                    </select>
+                </div>
+
+                <div class="text-end">
+                    <button class="btn btn-primary">
+                        Register
+                    </button>
+                </div>
+
+            </form>
         </div>
-
-        <div>
-            <label for="email">Email </label>
-            <input id="email" type="email" th:field="*{email}">
-        </div>
-
-        <div>
-            <label for="password">Password </label>
-            <input id="password" type="password" th:field="*{password}">
-        </div>
-
-        <div>
-            <label for="confirm_password">Confirm Password </label>
-            <input id="confirm_password" type="password">
-        </div>
-
-        <button>
-            Register
-        </button>
-
-    </form>
+    </div>
 
 
 </body>
