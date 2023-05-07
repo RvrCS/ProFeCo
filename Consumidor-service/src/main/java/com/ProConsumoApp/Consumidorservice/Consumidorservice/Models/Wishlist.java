@@ -1,8 +1,7 @@
 package com.ProConsumoApp.Consumidorservice.Consumidorservice.Models;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import com.ProConsumoApp.Consumidorservice.Consumidorservice.DTOs.UserDTO;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -12,9 +11,15 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class Wishlist extends AbstractEntity {
+public class Wishlist {
 
-    @Column(name = "id_user", nullable = false)
-    private Integer idUser;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_wishlist")
+    protected Integer id;
+
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "id_user")
+    private UserDTO userDTO;
 
 }

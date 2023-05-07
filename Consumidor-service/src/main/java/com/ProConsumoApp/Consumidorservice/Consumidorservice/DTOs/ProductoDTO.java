@@ -4,6 +4,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Transient;
+import org.apache.catalina.User;
 
 @Entity
 public class ProductoDTO {
@@ -29,6 +30,6 @@ public class ProductoDTO {
     private String categoria;
 
     @Transient
-    private SupermercadoDTO supermercadoDTO;
+    private UserDTO userDTO;
 
 }
