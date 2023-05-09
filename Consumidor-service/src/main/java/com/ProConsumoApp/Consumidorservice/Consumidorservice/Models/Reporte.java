@@ -22,12 +22,12 @@ public class Reporte{
     @Column(name = "descripcion", nullable = false)
     private String descripcion;
 
-    @OneToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_producto")
     private ProductoDTO productoDTO;
 
-    @OneToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_user")
-    private UserDTO userDTO;
+    private UserDTO user;
 
 }
