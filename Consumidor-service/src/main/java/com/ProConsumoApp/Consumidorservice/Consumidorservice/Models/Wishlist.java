@@ -18,7 +18,7 @@ public class Wishlist {
     @Column(name = "id_wishlist")
     protected Integer id;
 
-    @OneToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_user")
     private UserDTO userDTO;
 

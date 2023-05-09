@@ -20,15 +20,15 @@ public class DetalleWishlist{
     @Column(name = "id_detallewishlist")
     protected Integer id;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "id_wishlist")
     private Wishlist wishlist;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "id_user")
     private UserDTO userDTO;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "id_producto")
     private ProductoDTO productoDTO;
 
