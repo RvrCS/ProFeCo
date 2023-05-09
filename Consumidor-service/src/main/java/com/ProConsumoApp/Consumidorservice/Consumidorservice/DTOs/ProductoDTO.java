@@ -1,12 +1,10 @@
 package com.ProConsumoApp.Consumidorservice.Consumidorservice.DTOs;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Transient;
+import jakarta.persistence.*;
 import org.apache.catalina.User;
 
 @Entity
+@Table(name = "producto")
 public class ProductoDTO {
 
     @Id
