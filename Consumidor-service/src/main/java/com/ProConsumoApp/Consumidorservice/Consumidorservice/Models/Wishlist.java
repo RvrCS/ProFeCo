@@ -1,10 +1,12 @@
 package com.ProConsumoApp.Consumidorservice.Consumidorservice.Models;
 
 import com.ProConsumoApp.Consumidorservice.Consumidorservice.DTOs.UserDTO;
-import jakarta.persistence.*;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import javax.persistence.*;
 
 @Entity
 @Table(name = "wishlist")

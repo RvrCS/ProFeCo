@@ -1,6 +1,6 @@
 package com.ProConsumoApp.Supermercadoservice.Supermercadoservice.DTO;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "user")
