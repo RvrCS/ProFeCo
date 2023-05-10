@@ -2,7 +2,7 @@ package com.ProConsumoApp.Consumidorservice.Consumidorservice.Models;
 
 import com.ProConsumoApp.Consumidorservice.Consumidorservice.DTOs.ProductoDTO;
 import com.ProConsumoApp.Consumidorservice.Consumidorservice.DTOs.UserDTO;
-import jakarta.persistence.*;
+import javax.persistence.*;
 import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
