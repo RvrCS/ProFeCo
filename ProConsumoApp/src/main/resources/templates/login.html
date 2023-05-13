@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -10,10 +10,16 @@
         crossorigin="anonymous">
 </head>
 <body class="container">
+    <div th:if="${param.error}">
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <strong>Error:</strong> Email o contraseña inválidos.
+        </div>
+    </div>
+
 
     <div class="row justify-content-center">
         <div class="col-md-6 col-lg-4">
-            <form action="" method="post">
+            <form action="login" method="post">
 
                 <div class="mb-2">
                     <label for="email">Email </label>
@@ -32,6 +38,7 @@
                 </div>
 
             </form>
+
         </div>
         <div class="text-center">
             <a href="/register" class="btn btn-secondary">
