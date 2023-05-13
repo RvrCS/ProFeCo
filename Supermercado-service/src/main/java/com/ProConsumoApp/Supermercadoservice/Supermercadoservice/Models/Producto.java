@@ -1,6 +1,6 @@
 package com.ProConsumoApp.Supermercadoservice.Supermercadoservice.Models;
 
-import com.ProConsumoApp.Supermercadoservice.Supermercadoservice.DTO.UserDTO;
+import com.ProConsumoApp.Supermercadoservice.Supermercadoservice.DTO.UserEntity;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -38,7 +38,7 @@ public class Producto {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_user")
-    private UserDTO userDTO;
+    private UserEntity userEntity;
 
     @OneToMany(mappedBy = "producto")
     private List<Oferta> ofertas;

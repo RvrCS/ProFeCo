@@ -1,6 +1,5 @@
 package com.ProConsumoApp.Supermercadoservice.Supermercadoservice.Models;
 
-import com.ProConsumoApp.Supermercadoservice.Supermercadoservice.DTO.UserDTO;
 import javax.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

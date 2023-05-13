@@ -14,6 +14,8 @@ public class SupermercadoService {
     @Autowired
     private ProductoRepo productoRepo;
 
+
+
     public List<Producto> getAllProductos(){
         List<Producto> productos = productoRepo.findAll();
 
@@ -25,5 +27,6 @@ public class SupermercadoService {
         return productoRepo.findById(id).orElse(null);
 
     }
+
 
 }
