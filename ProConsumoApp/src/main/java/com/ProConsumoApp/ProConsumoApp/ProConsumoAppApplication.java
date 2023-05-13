@@ -21,9 +21,5 @@ public class ProConsumoAppApplication {
 		return new RestTemplate();
 	}
 
-	@Bean
-	public AuthenticationSuccessHandler myAuthenticationSuccessHandler(){
-		return new MySimpleUrlAuthenticationSuccessHandler();
-	}
 
 }
