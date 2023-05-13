@@ -14,31 +14,34 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
 @Configuration
 @EnableWebSecurity
-@EnableMethodSecurity
 public class WebSecurityConfiguration{
 
     @Bean
     public UserDetailsService userDetailsService(){
         return new CustomUserDetailsService();
     }
-
+    @Bean
+    public AuthenticationSuccessHandler myAuthenticationSuccessHandler(){
+        return new MySimpleUrlAuthenticationSuccessHandler();
+    }
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
           http.csrf().disable()
                     .authorizeHttpRequests()
-                    .requestMatchers("/","/register","/test/**", "/api/user/**").permitAll()
+                    .requestMatchers("/**","/register","/test/**", "/api/user/**").permitAll()
                     .and()
-                    .authorizeHttpRequests().requestMatchers("/consumidor/**").hasAuthority("CONSUMIDOR")
+                    .authorizeHttpRequests().requestMatchers("/consumidor/**").hasRole("CONSUMIDOR")
                     .and()
-                    .authorizeHttpRequests().requestMatchers("supermercado/**").hasAuthority("ADMIN")
+                    .authorizeHttpRequests().requestMatchers("supermercado/**").hasRole("SUPERMERCADO")
                     .and()
                     .formLogin()
                         .loginPage("/login")
                         .usernameParameter("email")
-                        .defaultSuccessUrl("/consumidor/home", true).permitAll()
+                        .successHandler(myAuthenticationSuccessHandler())
                         .failureUrl("/login?error=true")
                     .and()
                         .logout()
