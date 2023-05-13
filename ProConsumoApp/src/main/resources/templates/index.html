@@ -9,15 +9,82 @@
           integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
           crossorigin="anonymous">
 
+    <style>
+
+        /* Color de fondo del footer */
+        footer {
+        background-color: #E9ECEF;
+        }
+    </style>
+
 </head>
 <body class="container">
-    <h1>Bienvenido a ProConsumoApp</h1>
+<header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">ProConsumoApp</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarNav" aria-controls="navbarNav"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Inicio</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="text-end">
+                <a href="/login" class="btn btn-primary">
+                    Iniciar sesión
+                </a>
+            </div>
+        </div>
+    </nav>
+</header>
 
-    <div class="text-start">
-        <a href="/login" class="btn btn-primary">
-            Iniciar sesión
-        </a>
+<main>
+    <div class="container">
+        <div class="row">
+            <div class="col text-center">
+                <img src="https://i.blogs.es/8cc90e/profeco/450_1000.jpg" class="img-fluid">
+            </div>
+        </div>
     </div>
+
+    <div class="jumbotron" style="margin-top: 2rem;">
+        <h1 class="display-4 fw-bold">Bienvenido a ProConsumoApp</h1>
+        <p class="lead">Somos una iniciativa para ayudar a los clientes de mercados populares, supermercados y hasta mercados sobre ruedas.</p>
+        <hr class="my-4">
+        <p>La PROFECO, también conocida como la Procuraduría Federal del Consumidor, es una institución gubernamental en México encargada de proteger los derechos de los consumidores y fomentar prácticas comerciales justas y equitativas.</p>
+        <p>La PROFECO ha ayudado a miles de negocios en México al proporcionar información y asesoría en temas relacionados con el cumplimiento de las normas y regulaciones, así como en la solución de controversias con los consumidores.</p>
+    </div>
+
+
+
+
+</main>
+
+<footer class="bg-light text-center text-lg-start fixed-bottom" style="background-color: #F1F1F1;">
+    <div class="container p-4">
+        <div class="row">
+            <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
+                <h5 class="text-uppercase" style="color: #333333;">Contacto</h5>
+                <p class="text-justify" style="color: #666666;">Av. José Vasconcelos 208 Col. Condesa, Demarcación Territorial Cuauhtémoc 06140 Ciudad de México</p>
+            </div>
+
+            <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
+                <h5 class="text-uppercase" style="color: #333333;">Atención Ciudadana</h5>
+                <p class="text-justify" style="color: #666666;">Teléfono: 800 468 8722</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="text-center p-3" style="background-color: #333333; color: #ffffff;">
+        © ProConsumoApp 2023
+    </div>
+</footer>
 
 
 </body>

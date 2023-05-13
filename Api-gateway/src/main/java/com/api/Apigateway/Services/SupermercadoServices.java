@@ -31,4 +31,15 @@ public class SupermercadoServices {
 
     }
 
+    public ProductoDTO getProductoById(Integer id){
+        ResponseEntity<ProductoDTO> response = restTemplate.exchange(
+                SUPERMERCADO_URL + "/productos/"+id,
+                HttpMethod.GET,
+                null,
+                new ParameterizedTypeReference<ProductoDTO>(){}
+        );
+
+        return response.getBody();
+    }
+
 }

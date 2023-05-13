@@ -33,7 +33,7 @@ public class WebSecurityConfiguration{
                     .and()
                     .authorizeHttpRequests().requestMatchers("/consumidor/**").hasAuthority("CONSUMIDOR")
                     .and()
-                    .authorizeHttpRequests().requestMatchers("supermercado/**").hasAuthority("SUPERMERCADO")
+                    .authorizeHttpRequests().requestMatchers("supermercado/**").hasAuthority("ADMIN")
                     .and()
                     .formLogin()
                         .loginPage("/login")

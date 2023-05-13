@@ -36,7 +36,7 @@ public class HomeController {
     @PostMapping("/register")
     public String crear(User user){
         userService.addUser(user);
-        return "redirect:/";
+        return "redirect:/login";
     }
 
     @GetMapping("/users")

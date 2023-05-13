@@ -1,10 +1,12 @@
 package com.ProConsumoApp.ProConsumoApp;
 
 import com.ProConsumoApp.ProConsumoApp.Models.User;
+import com.ProConsumoApp.ProConsumoApp.Security.MySimpleUrlAuthenticationSuccessHandler;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.web.client.RestTemplate;
 
 @SpringBootApplication
@@ -19,6 +21,9 @@ public class ProConsumoAppApplication {
 		return new RestTemplate();
 	}
 
-
+	@Bean
+	public AuthenticationSuccessHandler myAuthenticationSuccessHandler(){
+		return new MySimpleUrlAuthenticationSuccessHandler();
+	}
 
 }
