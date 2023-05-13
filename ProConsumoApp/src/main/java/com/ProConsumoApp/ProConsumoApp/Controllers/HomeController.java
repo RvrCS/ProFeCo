@@ -3,6 +3,7 @@ package com.ProConsumoApp.ProConsumoApp.Controllers;
 
 import com.ProConsumoApp.ProConsumoApp.Models.User;
 import com.ProConsumoApp.ProConsumoApp.Repos.UserRepo;
+import com.ProConsumoApp.ProConsumoApp.Services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,9 +16,9 @@ import java.util.List;
 public class HomeController {
 
     @Autowired
-    private UserRepo userRepo;
+    private UserService userService;
 
-    @GetMapping("")
+    @GetMapping("/")
     public String index(){
 
         return "index";
@@ -34,13 +35,13 @@ public class HomeController {
 
     @PostMapping("/register")
     public String crear(User user){
-        userRepo.save(user);
-        return "redirect:/";
+        userService.addUser(user);
+        return "redirect:/login";
     }
 
     @GetMapping("/users")
     public String users(Model model){
-        List<User> users = userRepo.findAll();
+        List<User> users = userService.getAllUser();
         System.out.println(users);
         model.addAttribute("users", users);
         return "users";

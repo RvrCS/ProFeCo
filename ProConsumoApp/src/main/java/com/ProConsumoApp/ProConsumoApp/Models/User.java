@@ -2,10 +2,14 @@ package com.ProConsumoApp.ProConsumoApp.Models;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Data
 @Entity
-@Table(name = "users")
+@Table(name = "user")
+@NoArgsConstructor
+
 public class User {
 
     @Id
