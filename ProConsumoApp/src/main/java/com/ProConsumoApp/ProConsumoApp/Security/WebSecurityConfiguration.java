@@ -18,6 +18,7 @@ import org.springframework.security.web.authentication.AuthenticationSuccessHand
 
 @Configuration
 @EnableWebSecurity
+@EnableMethodSecurity
 public class WebSecurityConfiguration{
 
     @Bean
@@ -34,9 +35,9 @@ public class WebSecurityConfiguration{
                     .authorizeHttpRequests()
                     .requestMatchers("/**","/register","/test/**", "/api/user/**").permitAll()
                     .and()
-                    .authorizeHttpRequests().requestMatchers("/consumidor/**").hasRole("CONSUMIDOR")
+                    .authorizeHttpRequests().requestMatchers("/consumidor/**").authenticated()
                     .and()
-                    .authorizeHttpRequests().requestMatchers("supermercado/**").hasRole("SUPERMERCADO")
+                    .authorizeHttpRequests().requestMatchers("supermercado/**").authenticated()
                     .and()
                     .formLogin()
                         .loginPage("/login")

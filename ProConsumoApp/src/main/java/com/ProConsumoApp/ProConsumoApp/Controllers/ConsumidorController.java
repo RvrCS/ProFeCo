@@ -14,6 +14,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/consumidor")
+@PreAuthorize("hasAuthority('CONSUMIDOR')")
 public class ConsumidorController {
 
     @Autowired

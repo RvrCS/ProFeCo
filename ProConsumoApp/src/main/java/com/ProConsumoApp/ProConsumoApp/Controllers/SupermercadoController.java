@@ -3,6 +3,7 @@ package com.ProConsumoApp.ProConsumoApp.Controllers;
 import com.ProConsumoApp.ProConsumoApp.DTOs.ProductoDTO;
 import com.ProConsumoApp.ProConsumoApp.Services.SupermercadoServices;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Repository;
 import org.springframework.ui.Model;
@@ -13,6 +14,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/supermercado")
+@PreAuthorize("hasAuthority('SUPERMERCADO')")
 public class SupermercadoController {
 
 

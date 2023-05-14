@@ -17,6 +17,7 @@ import java.util.List;
 public class Producto {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_producto")
     private Integer idProducto;
 
@@ -30,7 +31,7 @@ public class Producto {
     @Column(name = "descripcion", nullable = false)
     private String descripcion;
 
-    @Column(name = "imagen", nullable = false)
+    @Column(name = "imagen", nullable = true)
     private byte[] imagen;
 
     @Column(name = "categoria", nullable = false)
