@@ -9,10 +9,7 @@ import com.ProConsumoApp.Supermercadoservice.Supermercadoservice.Services.UserSe
 import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
 
@@ -44,8 +41,6 @@ public class SupermercadoController {
         }
 
 
-
-
         return ResponseEntity.ok(productosDTO);
     }
 
@@ -57,6 +52,21 @@ public class SupermercadoController {
 
 
         return ResponseEntity.ok(productoDTO);
+    }
+
+    @PostMapping("/producto/save")
+    public ResponseEntity<Producto> setProducto(@RequestBody ProductoDTO productoDTO){
+        UserEntity user = userService.getUserByName(productoDTO.getNombreUsuario());
+
+        Producto producto = new Producto();
+        producto.setNombre(productoDTO.getNombre());
+        producto.setPrecio(productoDTO.getPrecio());
+        producto.setDescripcion(productoDTO.getDescripcion());
+        producto.setUserEntity(user);
+
+        supermercadoService.addProducto(producto);
+
+        return ResponseEntity.ok(producto);
     }
 
 }

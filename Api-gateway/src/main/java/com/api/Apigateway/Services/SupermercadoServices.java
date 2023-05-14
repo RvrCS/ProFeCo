@@ -4,8 +4,7 @@ import com.api.Apigateway.DTOs.ProductoDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -38,6 +37,21 @@ public class SupermercadoServices {
                 null,
                 new ParameterizedTypeReference<ProductoDTO>(){}
         );
+
+        return response.getBody();
+    }
+
+    public ProductoDTO setProducto(ProductoDTO producto){
+        HttpHeaders headers= new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+
+        HttpEntity<ProductoDTO> requestEntity = new HttpEntity<>(producto, headers);
+
+        ResponseEntity<ProductoDTO> response = restTemplate.exchange(
+                SUPERMERCADO_URL + "/producto/save",
+                HttpMethod.POST,
+                requestEntity,
+                new ParameterizedTypeReference<ProductoDTO>(){});
 
         return response.getBody();
     }

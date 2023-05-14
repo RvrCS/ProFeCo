@@ -3,8 +3,7 @@ package com.ProConsumoApp.ProConsumoApp.Services;
 import com.ProConsumoApp.ProConsumoApp.DTOs.ProductoDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.ParameterizedTypeReference;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -35,6 +34,22 @@ public class ApiGatewayService {
         }
 
         return productos;
+    }
+
+    public ProductoDTO setProducto(ProductoDTO producto){
+        RestTemplate restTemplate = new RestTemplate();
+        HttpHeaders headers= new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+
+        HttpEntity<ProductoDTO> requestEntity = new HttpEntity<>(producto, headers);
+
+        ResponseEntity<ProductoDTO> response = restTemplate.exchange(
+                APIGATEWAY_URL + "/producto/save",
+                HttpMethod.POST,
+                requestEntity,
+                new ParameterizedTypeReference<ProductoDTO>(){});
+
+        return response.getBody();
     }
 
 }

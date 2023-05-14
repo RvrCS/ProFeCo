@@ -34,9 +34,6 @@ public class Producto {
     @Column(name = "imagen", nullable = true)
     private byte[] imagen;
 
-    @Column(name = "categoria", nullable = false)
-    private String categoria;
-
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_user")
     private UserEntity userEntity;

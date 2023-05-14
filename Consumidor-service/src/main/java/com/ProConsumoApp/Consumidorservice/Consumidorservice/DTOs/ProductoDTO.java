@@ -25,9 +25,6 @@ public class ProductoDTO {
     private byte[] imagen;
 
     @Transient
-    private String categoria;
-
-    @Transient
     private UserDTO userDTO;
 
 }

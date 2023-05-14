@@ -5,10 +5,7 @@ import com.api.Apigateway.Services.SupermercadoServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
@@ -30,6 +27,12 @@ public class ApiGatewayController {
     public ResponseEntity<ProductoDTO> obtenerProductoById(@PathVariable Integer id){
         ProductoDTO productoDTO = supermercadoServices.getProductoById(id);
         return ResponseEntity.ok(productoDTO);
+    }
+
+    @PostMapping("/producto/save")
+    public ResponseEntity<ProductoDTO> setProducto(@RequestBody ProductoDTO productoDTO){
+        ProductoDTO producto = supermercadoServices.setProducto(productoDTO);
+        return ResponseEntity.ok(producto);
     }
 
 }
