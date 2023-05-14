@@ -4,6 +4,9 @@ import com.ProConsumoApp.ProConsumoApp.DTOs.ProductoDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -36,18 +39,26 @@ public class ApiGatewayService {
         return productos;
     }
 
-    public ProductoDTO setProducto(ProductoDTO producto){
+    public ProductoDTO setProducto(ProductoDTO producto) {
         RestTemplate restTemplate = new RestTemplate();
-        HttpHeaders headers= new HttpHeaders();
+        HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
 
         HttpEntity<ProductoDTO> requestEntity = new HttpEntity<>(producto, headers);
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String currentUserName = null;
+        if (!(authentication instanceof AnonymousAuthenticationToken)) {
+            currentUserName = authentication.getName();
+        }
+        producto.setNombreUsuario(currentUserName);
+        System.out.println(producto.toString());
 
         ResponseEntity<ProductoDTO> response = restTemplate.exchange(
                 APIGATEWAY_URL + "/producto/save",
                 HttpMethod.POST,
                 requestEntity,
-                new ParameterizedTypeReference<ProductoDTO>(){});
+                new ParameterizedTypeReference<ProductoDTO>() {
+                });
 
         return response.getBody();
     }
