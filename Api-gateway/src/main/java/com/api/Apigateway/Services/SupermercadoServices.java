@@ -21,6 +21,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
+import java.util.function.Function;
 
 @Service
 public class SupermercadoServices {
@@ -45,36 +48,17 @@ public class SupermercadoServices {
                 message
         );
 
-        return responseFuture.thenApply(response ->{
-           if(response == null)
-               return new ArrayList<>();
+        return responseFuture
+                .orTimeout(5, TimeUnit.SECONDS)
+                .exceptionally(ex -> null)
+                .thenApply(response ->{
+                    if(response == null)
+                        return new ArrayList<ProductoDTO>();
 
-           String responseString = response.toString();
-           Gson gson = new Gson();
-           return gson.fromJson(responseString, new TypeToken<List<ProductoDTO>>(){}.getType());
-        });
-
-        /*try{
-            Object response = responseFuture.get();
-
-            if(response == null)
-                return new ArrayList<>();
-
-            String responseString = response.toString();
-
-            Gson gson = new Gson();
-            List<ProductoDTO> productos;
-            try {
-                productos = gson.fromJson(responseString, new TypeToken<List<ProductoDTO>>(){}.getType());
-            }catch (Exception e){
-                return  new ArrayList<>();
-            }
-
-            return productos;
-
-        }catch (Exception e) {
-            return new ArrayList<>();
-        }*/
+                    String responseString = response.toString();
+                    Gson gson = new Gson();
+                    return gson.fromJson(responseString, new TypeToken<List<ProductoDTO>>(){}.getType());
+                });
     }
 
     public ProductoDTO getProductoById(Integer id){

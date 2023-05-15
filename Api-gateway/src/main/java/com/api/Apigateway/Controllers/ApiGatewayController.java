@@ -3,15 +3,13 @@ package com.api.Apigateway.Controllers;
 import com.api.Apigateway.DTOs.ProductoDTO;
 import com.api.Apigateway.Services.SupermercadoServices;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.client.RestTemplate;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.ExecutionException;
 
 @RestController
 @RequestMapping("/apigateway")
@@ -26,11 +24,12 @@ public class ApiGatewayController {
         CompletableFuture<List<ProductoDTO>> productosFuture = supermercadoServices.getProductos();
 
         return productosFuture.thenApply(productos -> {
-           if(productos.isEmpty()){
-               return ResponseEntity.noContent().build();
-           }else{
+            if(productos == null)
+                return ResponseEntity.ok(new ArrayList<>());
+            else if(productos.isEmpty())
+                return ResponseEntity.noContent().build();
+            else
                 return ResponseEntity.ok(productos);
-           }
         });
     }
 
