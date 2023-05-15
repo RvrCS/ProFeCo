@@ -1,6 +1,9 @@
 package com.ProConsumoApp.ProConsumoApp.Services;
 
 import com.ProConsumoApp.ProConsumoApp.DTOs.ProductoDTO;
+import com.ProConsumoApp.ProConsumoApp.RabbitMQ.MQConfig;
+import org.springframework.amqp.core.AmqpTemplate;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
@@ -11,7 +14,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class ApiGatewayService {
@@ -20,6 +25,8 @@ public class ApiGatewayService {
 
     @Autowired
     private RestTemplate restTemplate;
+
+
 
     public List<ProductoDTO> getProductos(){
         ResponseEntity<List<ProductoDTO>> response = restTemplate.exchange(
@@ -35,7 +42,6 @@ public class ApiGatewayService {
         for (ProductoDTO productoDTO: response.getBody()) {
             productos.add(productoDTO);
         }
-
         return productos;
     }
 
