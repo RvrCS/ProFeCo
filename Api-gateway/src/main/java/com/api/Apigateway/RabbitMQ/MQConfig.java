@@ -21,6 +21,11 @@ public class MQConfig {
 
     public static String routingKey = "proconsumoapp_routingkey";
 
+    public static final String queueApi = "api_queue";
+    public static final String exchangeApi = "api-exchange";
+
+    public static final String routingKeyApi = "api-routing-key";
+
     // Spring bean for queue (store json messages)
     @Bean
     public Queue queue() {

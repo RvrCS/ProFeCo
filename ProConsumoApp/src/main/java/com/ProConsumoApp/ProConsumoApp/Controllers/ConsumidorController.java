@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import reactor.core.publisher.Mono;
 
 import java.util.List;
 
@@ -22,7 +23,8 @@ public class ConsumidorController {
 
     @GetMapping("/home")
     public String consumidorHome(Model model){
-        List<ProductoDTO> productosDTO = apiGatewayService.getProductos();
+        Mono<List<ProductoDTO>> productosMono = apiGatewayService.getProductos();
+        List<ProductoDTO> productosDTO = productosMono.block();
         model.addAttribute("productos", productosDTO);
         return "index-consumidor";
     }
@@ -30,7 +32,8 @@ public class ConsumidorController {
 
     @GetMapping("/listaProductos")
     public String consumidorListaProductos(Model model){
-        List<ProductoDTO> productos = apiGatewayService.getProductos();
+        Mono<List<ProductoDTO>> productos = apiGatewayService.getProductos();
+        List<ProductoDTO> productosDTO = productos.block();
         System.out.println(productos);
         model.addAttribute("productos", productos);
         return "listaProductos";

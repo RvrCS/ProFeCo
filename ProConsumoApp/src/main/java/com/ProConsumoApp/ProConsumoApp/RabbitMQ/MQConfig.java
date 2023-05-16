@@ -13,12 +13,12 @@ import org.springframework.context.annotation.Configuration;
 public class MQConfig {
 
 
-    public static final String queueName = "proconsumoapp_queue";
+    public static final String queueName = "api_queue";
 
 
-    public static String exchangeName = "proconsumoapp_exchange";
+    public static String exchangeName = "api-exchange";
 
-    public static String routingKey = "proconsumoapp_routingkey";
+    public static String routingKey = "api-routing-key";
 
     // Spring bean for queue (store json messages)
     @Bean
