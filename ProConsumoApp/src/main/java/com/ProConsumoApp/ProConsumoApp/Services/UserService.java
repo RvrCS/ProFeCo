@@ -37,4 +37,8 @@ public class UserService {
         return "Usuario agregado";
     }
 
+    public User getUserByName(String name) {
+        return userRepo.findByNombre(name);
+
+    }
 }

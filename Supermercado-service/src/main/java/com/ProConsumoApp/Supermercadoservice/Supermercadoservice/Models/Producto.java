@@ -2,11 +2,12 @@ package com.ProConsumoApp.Supermercadoservice.Supermercadoservice.Models;
 
 import com.ProConsumoApp.Supermercadoservice.Supermercadoservice.DTO.UserEntity;
 
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.*;
+
 import java.util.List;
 
 @Entity
@@ -17,6 +18,7 @@ import java.util.List;
 public class Producto {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_producto")
     private Integer idProducto;
 
@@ -30,11 +32,8 @@ public class Producto {
     @Column(name = "descripcion", nullable = false)
     private String descripcion;
 
-    @Column(name = "imagen", nullable = false)
+    @Column(name = "imagen", nullable = true)
     private byte[] imagen;
-
-    @Column(name = "categoria", nullable = false)
-    private String categoria;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_user")

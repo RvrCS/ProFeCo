@@ -48,5 +48,20 @@ public class UserService {
         return userDTO;
     }
 
+    public UserEntity getUserByName(String name) {
+        RestTemplate restTemplate = new RestTemplate();
+        ResponseEntity<UserEntity> response = restTemplate.exchange(
+                USER_URL + "/" + name,
+                HttpMethod.GET,
+                null,
+                new ParameterizedTypeReference<UserEntity>(){}
+        );
+        if(response.getBody() == null){
+            return null;
+        }
+
+        return response.getBody();
+    }
+
 
 }

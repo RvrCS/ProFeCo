@@ -28,5 +28,8 @@ public class SupermercadoService {
 
     }
 
+    public Producto addProducto(Producto producto){
+        return productoRepo.save(producto);
+    }
 
 }

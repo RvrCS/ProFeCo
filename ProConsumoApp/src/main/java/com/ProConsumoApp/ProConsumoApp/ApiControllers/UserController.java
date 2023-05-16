@@ -38,5 +38,11 @@ public class UserController {
         return ResponseEntity.ok(user);
     }
 
+    @GetMapping("/{name}")
+    public ResponseEntity<User> obtenerUsuarioByName(@PathVariable String name) {
+        User user = userService.getUserByName(name);
+
+        return ResponseEntity.ok(user);
+    }
 
 }
