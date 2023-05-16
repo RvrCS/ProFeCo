@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import reactor.core.publisher.Mono;
 
 import java.util.List;
 
@@ -38,7 +39,8 @@ public class SupermercadoController {
 
     @PostMapping("/producto")
     public String agregarProducto(@ModelAttribute("producto")ProductoDTO productoDTO){
-        apiGatewayService.setProducto(productoDTO);
+        Mono<ProductoDTO> productoMono = apiGatewayService.setProducto(productoDTO);
+        productoMono.subscribe();
         return "redirect:/supermercado/home";
     }
 

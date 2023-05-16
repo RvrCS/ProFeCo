@@ -12,6 +12,21 @@
         footer {
         background-color: #E9ECEF;
         }
+         /* Estilo para la barra de desplazamiento */
+    .my-custom-scrollbar {
+        height: 400px; /* altura fija */
+        overflow-y: auto;
+    }
+    /* Estilo para que se vea la barra de desplazamiento */
+    .my-custom-scrollbar::-webkit-scrollbar {
+        width: 8px;
+        background-color: #F5F5F5;
+    }
+    .my-custom-scrollbar::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+        background-color: #555;
+    }
     </style>
 </head>
 <body>
@@ -39,24 +54,26 @@
         <div class="col-md-12">
             <h1>Bienvenido consumidor</h1>
             <p>Aquí tienes la lista de todos los productos:</p>
-            <table class="table table-striped">
-                <thead>
-                <tr>
-                    <th>Nombre</th>
-                    <th>Descripción</th>
-                    <th>Precio</th>
-                    <th>Supermercado</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr th:each="producto: ${productos}">
-                    <td th:text="${producto.nombre}"></td>
-                    <td th:text="${producto.descripcion}"></td>
-                    <td th:text="${producto.precio}"></td>
-                    <td th:text="${producto.nombreUsuario}"></td>
-                </tr>
-                </tbody>
-            </table>
+            <div class="table-wrapper-scroll-y my-custom-scrollbar">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Descripción</th>
+                        <th>Precio</th>
+                        <th>Supermercado</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="producto: ${productos}">
+                        <td th:text="${producto.nombre}"></td>
+                        <td th:text="${producto.descripcion}"></td>
+                        <td th:text="${producto.precio}"></td>
+                        <td th:text="${producto.nombreUsuario}"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </div>

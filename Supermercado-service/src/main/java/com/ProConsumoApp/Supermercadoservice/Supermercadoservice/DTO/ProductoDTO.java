@@ -6,10 +6,12 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.apache.catalina.User;
 
+import java.io.Serializable;
+
 @Getter
 @Setter
 @NoArgsConstructor
-public class ProductoDTO {
+public class ProductoDTO implements Serializable {
 
     private String nombre;
     private float precio;

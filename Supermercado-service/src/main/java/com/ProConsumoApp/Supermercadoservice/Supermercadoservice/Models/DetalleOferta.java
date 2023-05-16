@@ -1,6 +1,6 @@
 package com.ProConsumoApp.Supermercadoservice.Supermercadoservice.Models;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
