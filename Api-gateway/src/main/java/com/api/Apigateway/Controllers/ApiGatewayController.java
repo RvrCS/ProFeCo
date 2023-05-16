@@ -48,6 +48,7 @@ public class ApiGatewayController {
 
     @PostMapping("/producto/save")
     public ResponseEntity<ProductoDTO> setProducto(@RequestBody ProductoDTO productoDTO){
+        System.out.println(productoDTO.toString());
         ProductoDTO producto = supermercadoServices.setProducto(productoDTO);
         return ResponseEntity.ok(producto);
     }

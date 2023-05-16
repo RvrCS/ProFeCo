@@ -48,8 +48,23 @@ public class ApiGatewayService {
 
     }
 
-    public ProductoDTO setProducto(ProductoDTO producto) {
-        RestTemplate restTemplate = new RestTemplate();
+    public Mono<ProductoDTO> setProducto(ProductoDTO producto) {
+        WebClient webClient = WebClient.create(APIGATEWAY_URL);
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String currentUserName = null;
+        if (!(authentication instanceof AnonymousAuthenticationToken)) {
+            currentUserName = authentication.getName();
+        }
+        producto.setNombreUsuario(currentUserName);
+        System.out.println(producto.toString());
+        return webClient.post()
+                .uri("/producto/save")
+                .contentType(MediaType.APPLICATION_JSON)
+                .bodyValue(producto)
+                .retrieve()
+                .bodyToMono(new ParameterizedTypeReference<ProductoDTO>() {});
+        /*RestTemplate restTemplate = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
 
@@ -69,7 +84,7 @@ public class ApiGatewayService {
                 new ParameterizedTypeReference<ProductoDTO>() {
                 });
 
-        return response.getBody();
+        return response.getBody();*/
     }
 
 }
