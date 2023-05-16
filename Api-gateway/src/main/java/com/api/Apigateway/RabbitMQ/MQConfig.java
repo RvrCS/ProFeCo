@@ -26,6 +26,13 @@ public class MQConfig {
 
     public static final String routingKeyApi = "api-routing-key";
 
+    public static final String queueProductos = "producto_queue";
+
+    @Bean
+    public Queue queueProductos() {
+        return new Queue(queueProductos, true);
+    }
+
     // Spring bean for queue (store json messages)
     @Bean
     public Queue queue() {

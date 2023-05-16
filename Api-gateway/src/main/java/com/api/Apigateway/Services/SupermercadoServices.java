@@ -10,6 +10,7 @@ import org.springframework.amqp.core.MessageProperties;
 import org.springframework.amqp.rabbit.AsyncRabbitTemplate;
 import org.springframework.amqp.rabbit.connection.CorrelationData;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
+import org.springframework.amqp.support.converter.MessageConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
@@ -36,6 +37,8 @@ public class SupermercadoServices {
     @Autowired
     private AsyncRabbitTemplate asyncRabbitTemplate;
 
+    @Autowired
+    private RabbitTemplate rabbitTemplate;
 
     public CompletableFuture<List<ProductoDTO>> getProductos(){
 
@@ -73,18 +76,30 @@ public class SupermercadoServices {
     }
 
     public ProductoDTO setProducto(ProductoDTO producto){
-        HttpHeaders headers= new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON);
+        Gson gson = new Gson();
+        String json = gson.toJson(producto);
+        System.out.println(json);
 
-        HttpEntity<ProductoDTO> requestEntity = new HttpEntity<>(producto, headers);
+        try{
+            Message responseMessage = rabbitTemplate.sendAndReceive(
+                    MQConfig.queueProductos,
+                    MessageBuilder
+                            .withBody(json.getBytes())
+                            .build());
 
-        ResponseEntity<ProductoDTO> response = restTemplate.exchange(
-                SUPERMERCADO_URL + "/producto/save",
-                HttpMethod.POST,
-                requestEntity,
-                new ParameterizedTypeReference<ProductoDTO>(){});
+            if (responseMessage != null && responseMessage.getBody() != null) {
+                String responseString = new String(responseMessage.getBody());
+                ProductoDTO response = gson.fromJson(responseString, ProductoDTO.class);
+                return response;
+            }else{
+                return null;
+            }
 
-        return response.getBody();
+
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+            return null;
+        }
     }
 
 }

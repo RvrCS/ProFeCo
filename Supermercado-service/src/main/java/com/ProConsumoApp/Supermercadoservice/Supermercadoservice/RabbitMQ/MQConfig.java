@@ -19,10 +19,17 @@ public class MQConfig {
 
     public static String routingKey = "proconsumoapp_routingkey";
 
+    public static final String queueProductos = "producto_queue";
+
     // Spring bean for queue (store json messages)
     @Bean
     public Queue queue() {
         return new Queue(queueName, true);
+    }
+
+    @Bean
+    public Queue queueProductos() {
+        return new Queue(queueProductos, true);
     }
 
     // Spring bean for rabbitmq exchange

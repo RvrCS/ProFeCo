@@ -87,7 +87,9 @@ public class SupermercadoController {
     }
 
     @PostMapping("/producto/save")
+    @RabbitListener(queues = MQConfig.queueProductos)
     public ResponseEntity<Producto> setProducto(@RequestBody ProductoDTO productoDTO){
+        System.out.println(productoDTO.toString());
         UserEntity user = userService.getUserByName(productoDTO.getNombreUsuario());
 
         Producto producto = new Producto();
@@ -96,6 +98,7 @@ public class SupermercadoController {
         producto.setDescripcion(productoDTO.getDescripcion());
         producto.setUserEntity(user);
 
+        System.out.println(producto.toString());
         supermercadoService.addProducto(producto);
 
         return ResponseEntity.ok(producto);
